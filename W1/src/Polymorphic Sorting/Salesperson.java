@@ -4,7 +4,7 @@
 // Represents a sales person who has a first name, last
 // name, and total number of sales.
 // *******************************************************
-public class Salesperson implements Comparable
+public class Salesperson implements Comparable<Salesperson>
 {
     private String firstName, lastName;
     private int totalSales;
@@ -38,10 +38,17 @@ public class Salesperson implements Comparable
     // Order is based on total sales with the name
     // (last, then first) breaking a tie.
     //--------------------------------------------------
-    public int compareTo(Object other)
+    public int compareTo(Salesperson other)
     {
-        int result;
-        return result;
+        if(this.totalSales > other.totalSales)
+            return 1;
+        else if(this.totalSales < other.totalSales)
+            return -1;
+        else
+            if(this.firstName.compareTo(other.firstName) == 0)
+                return this.lastName.compareTo(other.lastName);
+            else
+                return this.firstName.compareTo(other.firstName);
     }
     //-------------------------
     // First name accessor.
