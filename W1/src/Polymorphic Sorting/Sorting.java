@@ -17,7 +17,7 @@ public class Sorting
         {
             min = index;
             for (int scan = index+1; scan < list.length; scan++)
-            if (list[scan].compareTo(list[min]) < 0)
+                if (list[scan].compareTo(list[min]) < 0)
                 min = scan;
                 
             // Swap the values
@@ -37,7 +37,7 @@ public class Sorting
             Comparable key = list[index];
             int position = index;
             // Shift larger values to the right
-            while (position > 0 && key.compareTo(list[position-1]) < 0)
+            while (position > 0 && key.compareTo(list[position-1]) > 0)
             {
                 list[position] = list[position-1];
                 position--;
