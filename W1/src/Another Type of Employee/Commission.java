@@ -1,5 +1,4 @@
 public class Commission extends Hourly {
-    // 12.47
     double totalSales;
     double commissionRate;
 
@@ -22,6 +21,5 @@ public class Commission extends Hourly {
     @Override
     public String toString() {
         return super.toString() + "\nTotal Sales: " + this.totalSales;
-    }//12.57
-
+    }
 }
