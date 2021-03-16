@@ -95,9 +95,25 @@ public class IntegerList {
 
             list[i] = list[maxIndex];
             list[maxIndex] = temp;
+        }
     }
 
-    // public int binarySearchD(int target) {
+    // 15.52
+    private int binSearchD(int left, int right, int target) {
+        if (right > left) {
+            int middle = left + (right - left) / 2;
+            if (this.list[middle] == target)
+                return middle;
+            else if (this.list[middle] > target)
+                return binSearchD(left, middle, target);
+            else
+                return binSearchD(middle, right, target);
+        }
+        return -1;
+    }
 
-    // }
+    public int binarySearchD(int target) {
+        this.sortDecreasing();
+        return binSearchD(0, this.list.length, target);
+    }
 }
