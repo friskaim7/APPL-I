@@ -11,7 +11,7 @@ public class Paint {
     // -----------------------------------------
 
     public Paint(double c) {
-        coverage = c;
+        this.coverage = c;
     }
 
     // ---------------------------------------------------
