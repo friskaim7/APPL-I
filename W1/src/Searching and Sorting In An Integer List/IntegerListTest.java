@@ -62,7 +62,7 @@ public class IntegerListTest {
 
         case 5:
             System.out.print("Enter the value to look for: ");
-            loc = list.search(scan.nextInt());
+            loc = list.binarySearchD(scan.nextInt());
 
             if (loc != -1)
                 System.out.println("Found at location " + loc);

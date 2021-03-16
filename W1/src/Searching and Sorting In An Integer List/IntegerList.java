@@ -84,13 +84,13 @@ public class IntegerList {
     {
         int maxIndex;
         for (int i = 0; i < list.length - 1; i++) {
-            // find smallest element in list starting at location i
+            // find biggest element in list starting at location i
             maxIndex = i;
             for (int j = i + 1; j < list.length; j++)
                 if (list[j] > list[maxIndex])
                     maxIndex = j;
 
-            // swap list[i] with smallest element
+            // swap list[i] with biggest element
             int temp = list[i];
 
             list[i] = list[maxIndex];
@@ -103,7 +103,7 @@ public class IntegerList {
             int middle = left + (right - left) / 2;
             if (this.list[middle] == target)
                 return middle;
-            else if (this.list[middle] > target)
+            else if (this.list[middle] < target)
                 return binSearchD(left, middle, target);
             else
                 return binSearchD(middle, right, target);
