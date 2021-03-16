@@ -98,7 +98,6 @@ public class IntegerList {
         }
     }
 
-    // 15.52
     private int binSearchD(int left, int right, int target) {
         if (right > left) {
             int middle = left + (right - left) / 2;
