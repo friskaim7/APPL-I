@@ -130,7 +130,7 @@ public class CirclePanel extends JPanel {
         }
 
         public void actionPerformed(ActionEvent e) {
-            c= (color != null? color : JColorChooser.showDialog(choose,"Choose your color", c));
+            c = (color != null? color : JColorChooser.showDialog(choose,"Choose your color", c));
             repaint();
         }
     }
