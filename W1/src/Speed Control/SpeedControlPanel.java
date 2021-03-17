@@ -33,6 +33,13 @@ public class SpeedControlPanel extends JPanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.black);
         timer.start();
+        
+        JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 200, 30);
+        slider.setMajorTickSpacing(40);
+        slider.setMinorTickSpacing(10);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
+        slider.setAlignmentX(JSlider.LEFT_ALIGNMENT);
     }
 
     // --------------------
