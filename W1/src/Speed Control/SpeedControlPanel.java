@@ -19,6 +19,7 @@ public class SpeedControlPanel extends JPanel {
     private Circle bouncingBall; // the object that moves
     private Timer timer;
     private int moveX, moveY; // increment to move each time
+    JSlider slider;
     // ---------------------------------------------
     // Sets up the panel, including the timer
     // for the animation
@@ -34,12 +35,15 @@ public class SpeedControlPanel extends JPanel {
         setBackground(Color.black);
         timer.start();
         
-        JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 200, 30);
+        slider = new JSlider(JSlider.HORIZONTAL, 0, 200, 30);
         slider.setMajorTickSpacing(40);
         slider.setMinorTickSpacing(10);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setAlignmentX(JSlider.LEFT_ALIGNMENT);
+        slider.addChangeListener(new SlideListener());
+
+        // slider.setLabelTable("Timer Delay");
     }
 
     // --------------------
@@ -80,6 +84,10 @@ public class SpeedControlPanel extends JPanel {
         // resets the delay on the timer.
         // -------------------------------------------------
         public void stateChanged(ChangeEvent event) {
+            // This function must determine the value of the slider, then set the
+            // timer delay to that value. The timer delay can be set with the method setDelay (int delay) in the Timer class.
+            // Add the change listener to the JSlider object.
+            timer.setDelay(slider.getValue());
         }
     }
 }
