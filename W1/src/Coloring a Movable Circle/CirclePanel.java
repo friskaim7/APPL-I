@@ -71,6 +71,16 @@ public class CirclePanel extends JPanel {
 
         // Add the button panel to the bottom of the main panel
         this.add(buttonPanel2, "North");
+
+        blue.setBackground(Color.blue);
+        yellow.setBackground(Color.yellow);
+        red.setBackground(Color.red);
+        black.setBackground(Color.black);
+
+        blue.setForeground(Color.white);
+        yellow.setForeground(Color.gray);
+        red.setForeground(Color.white);
+        black.setForeground(Color.white);
     }
 
     // ---------------------------------------------------------------
