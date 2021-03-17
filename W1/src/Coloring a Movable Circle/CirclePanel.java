@@ -22,18 +22,22 @@ public class CirclePanel extends JPanel {
         x = (width / 2) - (CIRCLE_SIZE / 2);
         y = (height / 2) - (CIRCLE_SIZE / 2);
         c = Color.green;
+
         // Need a border layout to get the buttons on the bottom
         this.setLayout(new BorderLayout());
+
         // Create buttons to move the circle
         JButton left = new JButton("Left");
         JButton right = new JButton("Right");
         JButton up = new JButton("Up");
         JButton down = new JButton("Down");
+
         // Add listeners to the buttons
         left.addActionListener(new MoveListener(-20, 0));
         right.addActionListener(new MoveListener(20, 0));
         up.addActionListener(new MoveListener(0, -20));
         down.addActionListener(new MoveListener(0, 20));
+
         // Need a panel to put the buttons on or they'll be on
         // top of each other.
         JPanel buttonPanel = new JPanel();
@@ -41,8 +45,32 @@ public class CirclePanel extends JPanel {
         buttonPanel.add(right);
         buttonPanel.add(up);
         buttonPanel.add(down);
+
         // Add the button panel to the bottom of the main panel
         this.add(buttonPanel, "South");
+
+        // Create buttons to change the circle's color
+        JButton blue = new JButton("Blue");
+        JButton yellow = new JButton("Yellow");
+        JButton red = new JButton("Red");
+        JButton black = new JButton("Black");
+
+        // Add listeners to the buttons
+        blue.addActionListener(new ColorListener(Color.blue));
+        yellow.addActionListener(new ColorListener(Color.yellow));
+        red.addActionListener(new ColorListener(Color.red));
+        black.addActionListener(new ColorListener(Color.black));
+
+        // Need a panel to put the buttons on or they'll be on
+        // top of each other.
+        JPanel buttonPanel2 = new JPanel();
+        buttonPanel2.add(blue);
+        buttonPanel2.add(yellow);
+        buttonPanel2.add(red);
+        buttonPanel2.add(black);
+
+        // Add the button panel to the bottom of the main panel
+        this.add(buttonPanel2, "North");
     }
 
     // ---------------------------------------------------------------
@@ -76,6 +104,19 @@ public class CirclePanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             x += dx;
             y += dy;
+            repaint();
+        }
+    }
+
+    private class ColorListener implements ActionListener {
+        private Color color;
+
+        public ColorListener(Color color) {
+            this.color = color;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            c = color;
             repaint();
         }
     }
