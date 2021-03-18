@@ -6,6 +6,7 @@
 //
 // ****************************************************************
 import java.util.Scanner;
+import java.util.*;
 
 public class IntegerListTest {
     static IntegerList list = new IntegerList(10);
@@ -28,83 +29,93 @@ public class IntegerListTest {
     // ------------------------------------------------------
     // dispatch -- takes a choice and does what needs doing
     // ------------------------------------------------------
-public static void dispatch(int choice)
-{
-int loc;
-int val;
-long time1, time2;
-switch(choice)
-{
-case 0:
-System.out.println("Bye!");
-break;
-case 1:
-System.out.println(list);
-break;
-case 2:
-System.out.println("How big should the list be?");
-list = new IntegerList(scan.nextInt());
-System.out.println("List is created.");
+    public static void dispatch(int choice) {
+        int loc;
+        int val;
+        long before, after;
+        switch (choice) {
+        case 0:
+            System.out.println("Bye!");
+            break;
+        case 1:
+            System.out.println(list);
+            break;
+        case 2:
+            System.out.println("How big should the list be?");
+            list = new IntegerList(scan.nextInt());
+            System.out.println("List is created.");
 
-Chapter 9: Polymorphism 193
-break;
-case 3:
-list.randomize();
-System.out.println("List is filled with random elements.");
-break;
-case 4:
-list.fillSorted();
-System.out.println("List is filled with sorted elements.");
-break;
-case 5:
-System.out.print("Enter the value to look for: ");
-val = scan.nextInt();
-loc = list.linearSearch(val);
-if (loc != -1)
-System.out.println("Found at location " + loc);
-else
-System.out.println("Not in list");
-break;
-case 6:
-System.out.print("Enter the value to look for: ");
-val = scan.nextInt();
-loc = list.binarySearch(val);
-if (loc != -1)
-System.out.println("Found at location " + loc);
-else
-System.out.println("Not in list");
-break;
-case 7:
-list.sortIncreasing();
-System.out.println("List has been sorted.");
-break;
-case 8:
-list.sortDecreasing();
-System.out.println("List has been sorted.");
-break;
-default:
-System.out.println("Sorry, invalid choice");
-}
-}
+            break;
+        case 3:
+            list.randomize();
+            System.out.println("List is filled with random elements.");
+            break;
+        case 4:
+            list.fillSorted();
+            System.out.println("List is filled with sorted elements.");
+            break;
+        case 5:
+            System.out.print("Enter the value to look for: ");
+            val = scan.nextInt();
+
+            before = System.currentTimeMillis();
+            loc = list.linearSearch(val);
+            after = System.currentTimeMillis();
+            
+            if (loc != -1)
+                System.out.printf("Found at location %d (%d)", loc, (after - before));
+            else
+                System.out.printf("Not in list (%d)", (after - before));
+            break;
+
+        case 6:
+            System.out.print("Enter the value to look for: ");
+            val = scan.nextInt();
+            
+            before = System.currentTimeMillis();
+            loc = list.binarySearch(val);
+            after = System.currentTimeMillis();
+
+            if (loc != -1)
+                System.out.printf("Found at location %d (%d)", loc, (after - before));
+            else
+                System.out.printf("Not in list (%d)", (after - before));
+            break;
+
+        case 7:
+            before = System.currentTimeMillis();
+            list.sortIncreasing();
+            after = System.currentTimeMillis();
+            System.out.printf("List has been sorted. (%d)", (after - before));
+            break;
+
+        case 8:
+            before = System.currentTimeMillis();
+            list.sortDecreasing();
+            after = System.currentTimeMillis();
+            System.out.printf("List has been sorted. (%d)", (after - before));
+            break;
+
+        default:
+            System.out.println("Sorry, invalid choice");
+        }
+    }
 
     // ------------------------------------------------------
     // printMenu -- prints the user's choices
     // ------------------------------------------------------
-public static void printMenu()
-{
-System.out.println("\n Menu ");
-System.out.println(" ====");
-System.out.println("0: Quit");
-System.out.println("1: Print the list");
-System.out.println("2: Create a new list of a given size");
-System.out.println("3: Fill the list with random ints in range 1-length");
-System.out.println("4: Fill the list with already sorted elements");
-System.out.println("5: Use linear search to find an element");
-System.out.println("6: Use binary search to find an element " +
-"(list must be sorted in increasing order)");
-System.out.println("7: Use selection sort to sort the list into " +
-" increasing order");
-System.out.println("8: Use insertion sort to sort the list into " +
-" decreasing order");
-System.out.print("\nEnter your choice: ");
+    public static void printMenu() {
+        System.out.println("\n Menu ");
+        System.out.println(" ====");
+        System.out.println("0: Quit");
+        System.out.println("1: Print the list");
+        System.out.println("2: Create a new list of a given size");
+        System.out.println("3: Fill the list with random ints in range 1-length");
+        System.out.println("4: Fill the list with already sorted elements");
+        System.out.println("5: Use linear search to find an element");
+        System.out.println("6: Use binary search to find an element " + "(list must be sorted in increasing order)");
+        System.out.println("7: Use selection sort to sort the list into " + " increasing order");
+        System.out.println("8: Use insertion sort to sort the list into " + " decreasing order");
+        System.out.print("\nEnter your choice: ");
+    }
 }
