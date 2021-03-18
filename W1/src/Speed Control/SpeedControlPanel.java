@@ -20,17 +20,19 @@ public class SpeedControlPanel extends JPanel {
     private Timer timer;
     private int moveX, moveY; // increment to move each time
     JSlider slider;
+    JLabel label;
     JPanel slidePanel;
+
     // ---------------------------------------------
     // Sets up the panel, including the timer
     // for the animation
     // ---------------------------------------------
-
     public SpeedControlPanel() {
         timer = new Timer(30, new ReboundListener());
         this.setLayout(new BorderLayout());
         bouncingBall = new Circle(BALL_SIZE);
         moveX = moveY = 5;
+
         // Set up a slider object here
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(Color.black);
@@ -44,9 +46,9 @@ public class SpeedControlPanel extends JPanel {
         slider.setAlignmentX(JSlider.LEFT_ALIGNMENT);
         slider.addChangeListener(new SlideListener());
 
-        JLabel label = new JLabel("Timer Delay");
+        label = new JLabel("Timer Delay");
 
-        JPanel slidePanel = new JPanel();
+        slidePanel = new JPanel();
         slidePanel.add(label);
         slidePanel.add(slider);
 
@@ -70,16 +72,23 @@ public class SpeedControlPanel extends JPanel {
         // the position of the bouncing ball
         // ----------------------------------------------------
         public void actionPerformed(ActionEvent action) {
-            // int slidePanelHt = slidePanel.getSize().height;
-            bouncingBall.move(moveX, moveY);
-            // change direction if ball hits a side
-            int x = bouncingBall.getX();
-            int y = bouncingBall.getY();
-            if (x < 0 || x >= WIDTH - BALL_SIZE)
-                moveX = moveX * -1;
-            if (y <= 0 || y >= HEIGHT - BALL_SIZE)
-                moveY = moveY * -1;
-            repaint();
+            try {
+                bouncingBall.move(moveX, moveY);
+
+                // change direction if ball hits a side
+                int x = bouncingBall.getX();
+                int y = bouncingBall.getY();
+                int slidePanelHt = slidePanel.getSize().height;
+
+                if (x < 0 || x >= WIDTH - BALL_SIZE)
+                    moveX = moveX * -1;
+                if ((y <= 0) || (y >= HEIGHT - BALL_SIZE - slidePanelHt))
+                    moveY = moveY * -1;
+                repaint();
+
+            } catch (NullPointerException e) {
+                System.out.println("Something went wrong : " + e.toString());
+            }
         }
     }
 
