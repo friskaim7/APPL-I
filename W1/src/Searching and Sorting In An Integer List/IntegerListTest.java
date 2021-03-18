@@ -47,10 +47,14 @@ public class IntegerListTest {
             break;
         
         case 3:
+            list.replaceAll();
+            break;
+        
+        case 4:
             list.sortDecreasing();
             break;
 
-        case 4:
+        case 5:
             System.out.print("Enter the value to look for: ");
             loc = list.search(scan.nextInt());
 
@@ -60,7 +64,7 @@ public class IntegerListTest {
                 System.out.println("Not in list");
             break;
 
-        case 5:
+        case 6:
             System.out.print("Enter the value to look for: ");
             loc = list.binarySearchD(scan.nextInt());
 
@@ -70,7 +74,7 @@ public class IntegerListTest {
                 System.out.println("Not in list");
             break;
 
-        case 6:
+        case 7:
             list.print();
             break;
 
@@ -87,11 +91,12 @@ public class IntegerListTest {
         System.out.println(" ====");
         System.out.println("0: Quit");
         System.out.println("1: Create a new list (** do this first!! **)");
-        System.out.println("2: Sort the list using selection sort");
-        System.out.println("3: Sort the list using selection sort (decreasing)");
-        System.out.println("4: Find an element in the list using linear search");
-        System.out.println("5: Find an element in the list using binary search");
-        System.out.println("6: Print the list");
+        System.out.println("2: Replace All()");
+        System.out.println("3: Sort the list using selection sort");
+        System.out.println("4: Sort the list using selection sort (decreasing)");
+        System.out.println("5: Find an element in the list using linear search");
+        System.out.println("6: Find an element in the list using binary search");
+        System.out.println("7: Print the list");
         System.out.print("\nEnter your choice: ");
     }
 }
