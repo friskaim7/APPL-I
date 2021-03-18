@@ -43,11 +43,11 @@ public class IntegerListTest {
             break;
 
         case 2:
-            list.selectionSort();
+            list.replaceAll();
             break;
         
         case 3:
-            list.replaceAll();
+            list.selectionSort();
             break;
         
         case 4:
