@@ -2,7 +2,6 @@
 // ParseInts.java
 //
 // Reads a line of text and prints the integers in the line.
-//
 // ****************************************************************
 import java.util.Scanner;
 
@@ -14,14 +13,13 @@ public class ParseInts {
 
         System.out.println("Enter a line of text");
         Scanner scanLine = new Scanner(scan.nextLine());
-        
+
         while (scanLine.hasNext()) {
             try {
                 val = Integer.parseInt(scanLine.next());
                 sum += val;
             } catch (NumberFormatException e) {
             }
-            
         }
         System.out.println("The sum of the integers on this line is " + sum);
     }
