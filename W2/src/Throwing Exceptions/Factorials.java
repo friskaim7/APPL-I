@@ -10,11 +10,15 @@ public class Factorials {
         String keepGoing = "y";
         Scanner scan = new Scanner(System.in);
         while (keepGoing.equals("y") || keepGoing.equals("Y")) {
-            System.out.print("Enter an integer: ");
-            int val = scan.nextInt();
-            System.out.println("Factorial(" + val + ") = " + MathUtils.factorial(val));
-            System.out.print("Another factorial? (y/n) ");
-            keepGoing = scan.next();
+            try {
+                System.out.print("Enter an integer: ");
+                int val = scan.nextInt();
+                System.out.println("Factorial(" + val + ") = " + MathUtils.factorial(val));
+                System.out.print("Another factorial? (y/n) ");
+                keepGoing = scan.next();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.toString());
+            }
         }
     }
 }
