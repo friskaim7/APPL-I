@@ -12,6 +12,7 @@ public class RatePanel extends JPanel {
     private double[] rate; // exchange rates
     private String[] currencyName;
     private JLabel result;
+    private JComboBox comboBox;
 
     // ------------------------------------------------------------
     // Sets up a panel to convert cost from one of 6 currencies
@@ -32,6 +33,8 @@ public class RatePanel extends JPanel {
         add(title);
 
         add(result);
+        comboBox = new JComboBox<String>(currencyName);
+        
 
     }
 
