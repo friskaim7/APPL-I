@@ -1,7 +1,5 @@
-
 // ****************************************************************************
 // Warning.java
-//
 // Reads student data from a text file and writes data to another text file.
 // ****************************************************************************
 import java.util.Scanner;
@@ -17,7 +15,7 @@ public class Warning {
         int creditHrs; // number of semester hours earned
         double qualityPts; // number of quality points earned
         double gpa; // grade point (quality point) average
-        String line, name, inputName = "students.dat";
+        String name, inputName = "students.dat";
         String outputName = "warning.dat";
         try {
             // Set up scanner to input file
@@ -49,6 +47,7 @@ public class Warning {
             }
             // Close output file
             outFile.close();
+            scanner.close();
         } catch (Exception exception) {
             if (exception instanceof FileNotFoundException)
                 System.out.println("The file " + inputName + " was not found.");
