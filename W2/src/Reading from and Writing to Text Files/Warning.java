@@ -1,3 +1,4 @@
+
 // ****************************************************************************
 // Warning.java
 //
@@ -20,26 +21,41 @@ public class Warning {
         String outputName = "warning.dat";
         try {
             // Set up scanner to input file
+            File file = new File(inputName);
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter(" ");
+
             // Set up the output file stream
+            PrintWriter outFile = new PrintWriter(outputName);
+
             // Print a header to the output file
             outFile.println();
             outFile.println("Students on Academic Warning");
             outFile.println();
-            // Process the input file, one token at a time
 
-            while ()
-            {
-            // Get the credit hours and quality points and
-            // determine if the student is on warning. If so,
-            // write the student data to the output file.
+            // Process the input file, one token at a time
+            while (scanner.hasNextLine()) {
+                // Get the credit hours and quality points and
+                // determine if the student is on warning. If so,
+                // write the student data to the output file.
+                String[] column = scanner.nextLine().split(" ", 0);
+                name = column[0];
+                qualityPts = Double.parseDouble(column[2]);
+                creditHrs = Integer.parseInt(column[1]);
+                gpa = qualityPts / creditHrs;
+
+                if (((gpa < 1.5) && (creditHrs < 30)) || ((gpa < 1.75) && (creditHrs < 60)) || (gpa < 2.0))
+                    outFile.println(name + " " + creditHrs + " " + gpa);
             }
             // Close output file
-        } catch (FileNotFoundException exception) {
-            System.out.println("The file " + inputName + " was not found.");
-        } catch (IOException exception) {
-            System.out.println(exception);
-        } catch (NumberFormatException e) {
-            System.out.println("Format error in input file: " + e);
+            outFile.close();
+        } catch (Exception exception) {
+            if (exception instanceof FileNotFoundException)
+                System.out.println("The file " + inputName + " was not found.");
+            else if (exception instanceof IOException)
+                System.out.println(exception);
+            else if (exception instanceof NumberFormatException)
+                System.out.println("Format error in input file: " + exception);
         }
     }
 }
