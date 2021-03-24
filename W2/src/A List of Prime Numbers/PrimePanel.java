@@ -29,6 +29,7 @@ public class PrimePanel extends JPanel {
         computeButton = new JButton("Click to see all primes up to your number!");
         primeList = new JTextArea(10, 30);
         scrollPane = new JScrollPane(primeList);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         computeButton.addActionListener(new ButtonListener());
         // Add the components to the panel
         add(heading);
