@@ -7,11 +7,13 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.ColorUIResource;
 
 public class RatePanel extends JPanel {
     private double[] rate; // exchange rates
     private String[] currencyName;
-    private JLabel result, currencyLabel;
+    private JLabel result, currencyLabel, inputLabel;
     private JComboBox comboBox;
     private JTextField textField;
 
@@ -25,25 +27,46 @@ public class RatePanel extends JPanel {
         JLabel title = new JLabel("How much is that in dollars?");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font("Helvetica", Font.BOLD, 20));
+        title.setBorder(new EmptyBorder(10, 10, 30, 10));
+
         // Set up the arrays for the currency conversions
-        currencyName = new String[] { "Select the currency..", "European Euro", "Canadian Dollar", "Japanese Yen",
+        currencyName = new String[] {
+                "European Euro","Canadian Dollar","Japanese Yen",
                 "Australian Dollar", "Indian Rupee", "Mexican Peso" };
-        rate = new double[] { 0.0, 1.2103, 0.7351, 0.0091, 0.6969, 0.0222, 0.0880 };
+        rate = new double[] {1.2103, 0.7351, 0.0091, 0.6969, 0.0222, 0.0880 };
 
         result = new JLabel(" ------------ ");
+        result.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        currencyLabel = new JLabel("Currency Name");
+        currencyLabel = new JLabel("Select a currency name");
         comboBox = new JComboBox<String>(currencyName);
         comboBox.addActionListener(new ComboListener());
-        textField = new JTextField("1");
-        add(title);
-        add(result);
-        add(currencyLabel);
-        add(comboBox);
-        add(textField);
 
+        inputLabel = new JLabel("Type the nominal");
+        textField = new JTextField("1", 11);
+        
+        setBackground(new Color(240, 230, 255));
+        setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        // setBorder(new EmptyBorder(10, 10, 10, 10));
+
+        gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
+        add(title, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 2; gbc.gridwidth = 1;
+        add(inputLabel, gbc);
+        gbc.gridx = 1; gbc.gridy = 2;
+        add(textField, gbc);
+        
+        gbc.gridx = 0; gbc.gridy = 3;
+        add(currencyLabel, gbc);
+        gbc.gridx = 1; gbc.gridy = 3;
+        add(comboBox, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 4; gbc.gridwidth = 2;
+        add(result, gbc);
     }
-
+    
     // ******************************************************
     // Represents an action listener for the combo box.
     // ******************************************************
@@ -55,7 +78,9 @@ public class RatePanel extends JPanel {
         // --------------------------------------------------
         public void actionPerformed(ActionEvent event) {
             int index = comboBox.getSelectedIndex();
-            result.setText("1 " + currencyName[index] + " = " + (rate[index] * Double.parseDouble(textField.getText())) + " U.S. Dollars");
+            double nominal = Double.parseDouble(textField.getText());
+            result.setText(nominal + " " + currencyName[index] + " = " + (rate[index] * nominal)
+                    + " U.S. Dollars");
         }
     }
 }

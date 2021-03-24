@@ -15,5 +15,6 @@ public class CurrencyConverter {
         frame.getContentPane().add(ratePanel);
         frame.pack();
         frame.setVisible(true);
+        frame.setSize(550, 300);
     }
 }
