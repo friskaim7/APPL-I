@@ -1,7 +1,5 @@
-
 // ****************************************************************
 // PrimePanel.java
-//
 // Represents the panel for a program that displays all primes
 // up to a number input by the user.
 // ****************************************************************
@@ -14,7 +12,6 @@ public class PrimePanel extends JPanel {
     private JButton computeButton;
     private JTextArea primeList;
     private JScrollPane scrollPane;
-
     // ----------------------------------------------------------
     // Sets up a panel with a heading, a labeled text field
     // for the user to enter an integer, a button to trigger
@@ -40,7 +37,6 @@ public class PrimePanel extends JPanel {
         setPreferredSize(new Dimension(400, 320));
         setBackground(Color.yellow);
     }
-
     // *****************************************************************
     // Represents a listener for the click of the button.
     // *****************************************************************
@@ -51,23 +47,18 @@ public class PrimePanel extends JPanel {
         // -----------------------------------------------------------
         public void actionPerformed(ActionEvent event) {
             try {
-                String textNum = number.getText();
-                int num = Integer.parseInt(textNum);
+                int num = Integer.parseInt(number.getText());
                 String ans = "";
                 int count = 0;
                 if (num < 2)
                     ans = "There no primes less than " + num;
                 else {
-                    ans = " " + 2;
-                    count++;
+                    ans = " " + 2; count++;
                     for (int i = 3; i <= num; i += 2) {
                         boolean foundDivisor = false;
                         int j = 3;
                         while (j < i && !foundDivisor) {
-                            if ((i % j == 0) || (j == Math.sqrt(i)))
-                                foundDivisor = true;
-                            else
-                                j++;
+                            if ((i % j == 0) || (j == Math.sqrt(i))) foundDivisor = true; else j++;
                         }
                         // Add i to the list if it is prime
                         if (j == i) {
