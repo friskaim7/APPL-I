@@ -12,45 +12,59 @@ import java.awt.event.*;
 public class CirclePanel extends JPanel {
     private final int CIRCLE_SIZE = 50;
     private int x, y;
+    private int width, height;
     private Color c;
+    private JButton left, right, up, down;
+    JPanel buttonPanel;
 
     // ---------------------------------------------------------------
     // Set up circle and buttons to move it.
     // ---------------------------------------------------------------
     public CirclePanel(int width, int height) {
+        this.width = width;
+        this.height = height;
+        
         // Set coordinates so circle starts in middle
         x = (width / 2) - (CIRCLE_SIZE / 2);
         y = (height / 2) - (CIRCLE_SIZE / 2);
         c = Color.green;
+
         // Need a border layout to get the buttons on the bottom
         this.setLayout(new BorderLayout());
+
         // Create buttons to move the circle
-        JButton left = new JButton("Left");
-        JButton right = new JButton("Right");
-        JButton up = new JButton("Up");
-        JButton down = new JButton("Down");
+        left = new JButton("Left");
+        right = new JButton("Right");
+        up = new JButton("Up");
+        down = new JButton("Down");
+        
         // Add listeners to the buttons
         left.addActionListener(new MoveListener(-20, 0));
         right.addActionListener(new MoveListener(20, 0));
         up.addActionListener(new MoveListener(0, -20));
         down.addActionListener(new MoveListener(0, 20));
+        
         // Set mnemonics to the buttons
         left.setMnemonic('L');
         right.setMnemonic('r');
         up.setMnemonic('u');
         down.setMnemonic('d');
+        
         // Set tooltips to the buttons
         left.setToolTipText("Move 20px to the left");
         right.setToolTipText("Move 20px to the right");
         up.setToolTipText("Move 20px above");
         down.setToolTipText("Move 20px below");
+        
         // Need a panel to put the buttons on or they'll be on
         // top of each other.
-        JPanel buttonPanel = new JPanel();
+        buttonPanel = new JPanel();
         buttonPanel.add(left);
         buttonPanel.add(right);
         buttonPanel.add(up);
         buttonPanel.add(down);
+        buttonPanel.setBackground(Color.GRAY);
+        
         // Add the button panel to the bottom of the main panel
         this.add(buttonPanel, "South");
     }
@@ -86,6 +100,11 @@ public class CirclePanel extends JPanel {
             x += dx;
             y += dy;
             repaint();
+            // When the circle gets all the way to an edge, disable the corresponding button
+            if (x < (CIRCLE_SIZE/2) + dx) left.setEnabled(false); else left.setEnabled(true);
+            if (y < (CIRCLE_SIZE/2) + dy) up.setEnabled(false); else up.setEnabled(true);
+            if ((x + dx) > (width - CIRCLE_SIZE)) right.setEnabled(false); else right.setEnabled(true);
+            if ((y + dy) > (height - CIRCLE_SIZE - dy - buttonPanel.getHeight())) down.setEnabled(false); else down.setEnabled(true);
         }
     }
 }
