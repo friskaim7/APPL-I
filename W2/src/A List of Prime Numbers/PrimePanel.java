@@ -50,34 +50,38 @@ public class PrimePanel extends JPanel {
         // button is clicked.
         // -----------------------------------------------------------
         public void actionPerformed(ActionEvent event) {
-            String textNum = number.getText();
-            int num = Integer.parseInt(textNum);
-            String ans = "";
-            int count = 0;
-            if (num < 2)
-                ans = "There no primes less than " + num;
-            else {
-                ans = " " + 2;
-                count++;
-                for (int i = 3; i <= num; i += 2) {
-                    boolean foundDivisor = false;
-                    int j = 3;
-                    while (j < i && !foundDivisor) {
-                        if (i % j == 0)
-                            foundDivisor = true;
-                        else
-                            j++;
-                    }
-                    // Add i to the list if it is prime
-                    if (j == i) {
-                        ans += " " + i;
-                        count++;
-                        if (count % 10 == 0)
-                            ans += "\n";
+            try {
+                String textNum = number.getText();
+                int num = Integer.parseInt(textNum);
+                String ans = "";
+                int count = 0;
+                if (num < 2)
+                    ans = "There no primes less than " + num;
+                else {
+                    ans = " " + 2;
+                    count++;
+                    for (int i = 3; i <= num; i += 2) {
+                        boolean foundDivisor = false;
+                        int j = 3;
+                        while (j < i && !foundDivisor) {
+                            if (i % j == 0)
+                                foundDivisor = true;
+                            else
+                                j++;
+                        }
+                        // Add i to the list if it is prime
+                        if (j == i) {
+                            ans += " " + i;
+                            count++;
+                            if (count % 10 == 0)
+                                ans += "\n";
+                        }
                     }
                 }
+                primeList.setText(ans);
+            } catch (NumberFormatException e) {
+                primeList.setText("Your input is not an integer");
             }
-            primeList.setText(ans);
         }
     }
 }
