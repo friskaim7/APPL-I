@@ -21,7 +21,6 @@ public class Warning {
             // Set up scanner to input file
             File file = new File(inputName);
             Scanner scanner = new Scanner(file);
-            scanner.useDelimiter(" ");
 
             // Set up the output file stream
             PrintWriter outFile = new PrintWriter(outputName);
