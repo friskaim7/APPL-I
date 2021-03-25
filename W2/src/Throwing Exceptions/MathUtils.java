@@ -1,12 +1,11 @@
 // ****************************************************************
 // MathUtils.java
-//
 // Provides static mathematical utility functions.
-// or throw an IllegalArgumentException.
 // ****************************************************************
 public class MathUtils {
     // -------------------------------------------------------------
     // Returns the factorial of the argument given
+    // or throw an IllegalArgumentException.
     // -------------------------------------------------------------
     public static int factorial(int n) {
         if (n < 0) {

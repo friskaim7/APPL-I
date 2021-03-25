@@ -48,7 +48,6 @@ public class RatePanel extends JPanel {
         setBackground(new Color(240, 230, 255));
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        // setBorder(new EmptyBorder(10, 10, 10, 10));
 
         gbc.gridx = 0; gbc.gridy = 0; gbc.gridwidth = 2;
         add(title, gbc);

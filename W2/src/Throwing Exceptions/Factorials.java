@@ -1,6 +1,5 @@
 // ****************************************************************
 // Factorials.java
-//
 // Reads integers from the user and prints the factorial of each.
 // ****************************************************************
 import java.util.Scanner;
